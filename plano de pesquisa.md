@@ -124,8 +124,4 @@ O projeto busca beneficiar jogadores amadores e comunidades locais, facilitando 
 
 ---
 
-Se quiser, posso também:
 
-* adaptar para **ABNT**,
-* transformar em **PDF formatado**,
-* ou deixar no padrão de **submissão de feira científica** 👍
