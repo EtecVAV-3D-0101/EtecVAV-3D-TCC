@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+    Editar Time
+
+</h2>
+
+<div class="form-card">
+
+<form method="POST">
+
+    <label class="mb-2">
+
+        Nome do Time
+
+    </label>
+
+    <input
+        type="text"
+        name="nome"
+        value="{{ time.nome }}"
+        class="form-control mb-3">
+
+    <label class="mb-2">
+
+        Esporte
+
+    </label>
+
+    <input
+        type="text"
+        name="esporte"
+        value="{{ time.esporte }}"
+        class="form-control mb-4">
+
+    <button
+        class="btn btn-sport">
+
+        Salvar Alterações
+
+    </button>
+
+</form>
+
+</div>
+
+{% endblock %}

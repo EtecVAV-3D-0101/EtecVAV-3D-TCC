@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Novo Post</h2>
+
+<div class="form-card">
+
+<form method="POST">
+
+    <input
+    type="text"
+    name="titulo"
+    class="form-control mb-3"
+    placeholder="Título">
+
+    <textarea
+    name="descricao"
+    class="form-control mb-3"
+    rows="5"
+    placeholder="Descrição"></textarea>
+
+    <button class="btn btn-sport">
+
+        Publicar
+
+    </button>
+
+</form>
+
+</div>
+
+{% endblock %}

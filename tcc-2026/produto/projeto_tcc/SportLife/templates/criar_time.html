@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Novo Time</h2>
+
+<div class="form-card">
+
+<form method="POST">
+
+<input
+type="text"
+name="nome"
+class="form-control mb-3"
+placeholder="Nome do Time">
+
+<input
+type="text"
+name="esporte"
+class="form-control mb-3"
+placeholder="Esporte">
+
+<button class="btn btn-sport">
+
+Salvar
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

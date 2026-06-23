@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Novo Torneio</h2>
+
+<div class="form-card">
+
+<form method="POST">
+
+<input
+type="text"
+name="nome"
+class="form-control mb-3"
+placeholder="Nome do Torneio">
+
+<input
+type="text"
+name="modalidade"
+class="form-control mb-3"
+placeholder="Modalidade">
+
+<textarea
+name="descricao"
+rows="5"
+class="form-control mb-3"
+placeholder="Descrição"></textarea>
+
+<button class="btn btn-sport">
+
+Salvar Torneio
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

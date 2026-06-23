@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between">
+
+<h2>Torneios</h2>
+
+<a href="/criar-torneio"
+class="btn btn-sport">
+
+Novo Torneio
+
+</a>
+
+</div>
+
+<div class="row">
+
+{% for torneio in torneios %}
+
+<div class="col-md-4">
+
+<div class="feed-card">
+
+<h4>{{ torneio.nome }}</h4>
+
+<p>{{ torneio.modalidade }}</p>
+
+<a href="/editar-torneio/{{ torneio.id }}"
+class="btn btn-warning">
+
+Editar
+
+</a>
+
+<a href="/excluir-torneio/{{ torneio.id }}"
+class="btn btn-danger">
+
+Excluir
+
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

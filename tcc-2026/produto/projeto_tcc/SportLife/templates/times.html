@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between">
+
+<h2>Times</h2>
+
+<a href="/criar-time"
+class="btn btn-sport">
+
+Novo Time
+
+</a>
+
+</div>
+
+<div class="row">
+
+{% for time in times %}
+
+<div class="col-md-4">
+
+<div class="feed-card">
+
+<h4>{{ time.nome }}</h4>
+
+<p>{{ time.esporte }}</p>
+
+<a href="/editar-time/{{ time.id }}"
+class="btn btn-warning">
+
+Editar
+
+</a>
+
+<a href="/excluir-time/{{ time.id }}"
+class="btn btn-danger">
+
+Excluir
+
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

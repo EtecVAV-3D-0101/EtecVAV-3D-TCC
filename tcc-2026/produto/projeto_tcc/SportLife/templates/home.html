@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="hero">
+
+    <h1>
+        SportLife
+    </h1>
+
+    <p>
+        A rede social esportiva para jogadores,
+        equipes e organizadores de torneios.
+    </p>
+
+    <a href="/cadastro"
+       class="btn btn-sport">
+
+        Criar Conta
+
+    </a>
+
+</section>
+
+<div class="stats">
+
+    <div class="stat-card">
+        <span>⚽</span>
+        <h3>Gerencie Times</h3>
+    </div>
+
+    <div class="stat-card">
+        <span>🏆</span>
+        <h3>Crie Torneios</h3>
+    </div>
+
+    <div class="stat-card">
+        <span>📢</span>
+        <h3>Compartilhe Resultados</h3>
+    </div>
+
+</div>
+
+<h2 class="section-title">
+    Últimas Publicações
+</h2>
+
+<div class="row">
+
+    {% for post in posts %}
+
+    <div class="col-md-4">
+
+        <div class="feed-card">
+
+            <h4>{{ post.titulo }}</h4>
+
+            <p>{{ post.descricao }}</p>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="col-12">
+        <p class="text-center text-muted">Nenhuma publicação ainda. Seja o primeiro a publicar!</p>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

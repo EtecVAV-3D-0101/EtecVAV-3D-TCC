@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-5">
+
+        <div class="form-card">
+
+            <h2 class="text-center mb-4">
+                Entrar no SportLife
+            </h2>
+
+            <form method="POST">
+
+                <input
+                    type="email"
+                    name="email"
+                    class="form-control mb-3"
+                    placeholder="Digite seu email"
+                    required>
+
+                <input
+                    type="password"
+                    name="senha"
+                    class="form-control mb-3"
+                    placeholder="Digite sua senha"
+                    required>
+
+                <button
+                    class="btn btn-sport w-100">
+
+                    Entrar
+
+                </button>
+
+            </form>
+
+            <div class="text-center mt-3">
+
+                Não possui conta?
+
+                <a href="/cadastro">
+                    Cadastre-se
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
