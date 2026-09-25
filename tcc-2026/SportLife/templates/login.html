@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="auth-wrap">
+    <h1>Entrar</h1>
+    <p class="sub">Bom te ver de novo.</p>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="field">
+            <label class="form-lbl">Email</label>
+            <input type="email" name="email" class="form-control" placeholder="voce@email.com" required autofocus>
+        </div>
+        <div class="field">
+            <label class="form-lbl">Senha</label>
+            <input type="password" name="senha" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button class="btn btn-block">Entrar</button>
+    </form>
+
+    <p class="auth-switch">Não tem conta? <a href="/cadastro">Criar conta</a></p>
+</div>
+
+{% endblock %}

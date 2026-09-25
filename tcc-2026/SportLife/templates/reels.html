@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Reels</h1>
+        <p>Resultados de jogos e torneios que já rolaram.</p>
+    </div>
+    {% if current_user.is_authenticated %}
+    <a href="/reels/novo" class="btn btn-sm">+ Resultado</a>
+    {% endif %}
+</div>
+
+<div class="chip-row">
+    <a href="/reels"><span class="chip {{ 'ativo' if not esporte_filtro }}">Todos</span></a>
+    {% for esp in todos_esportes %}
+    <a href="/reels?esporte={{ esp }}"><span class="chip {{ 'ativo' if esporte_filtro == esp }}">{{ esp }}</span></a>
+    {% endfor %}
+</div>
+
+{% if resultados %}
+{% for r in resultados %}
+<div class="card resultado-card">
+    <div class="resultado-head">
+        <span class="resultado-esporte">{{ r.esporte }}</span>
+        {% if r.data %}<span class="resultado-data">📅 {{ r.data }}</span>{% endif %}
+    </div>
+    <div class="resultado-participantes">{{ r.participantes }}</div>
+    {% if r.placar %}<div class="resultado-placar">{{ r.placar }}</div>{% endif %}
+    {% if r.observacao %}<div class="resultado-obs">{{ r.observacao }}</div>{% endif %}
+    {% if r.torneio %}<div class="resultado-torneio">🏆 {{ r.torneio.nome }}</div>{% endif %}
+    <div class="resultado-footer">
+        <span class="resultado-autor">publicado por {{ r.autor.nome }}</span>
+        {% if current_user.is_authenticated and current_user.id == r.autor_id %}
+        <form method="POST" action="/reels/{{ r.id }}/excluir">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn-danger-ghost" title="Excluir">✕</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="empty">
+    <span class="empty-icon">🎬</span>
+    <p>Nenhum resultado ainda{% if esporte_filtro %} em {{ esporte_filtro }}{% endif %}.</p>
+    {% if current_user.is_authenticated %}<a href="/reels/novo" class="btn">Publicar o primeiro</a>{% endif %}
+</div>
+{% endif %}
+
+{% endblock %}

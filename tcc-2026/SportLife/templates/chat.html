@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Chat</h1>
+        <p>Marque uma prática, um amistoso, combine local e horário.</p>
+    </div>
+</div>
+
+<form method="POST" action="/chat/nova" class="chat-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <textarea name="texto" placeholder="Ex: Bora fechar um amistoso de vôlei sábado?" required maxlength="500"></textarea>
+    <div class="chat-form-row">
+        <select name="esporte">
+            <option value="">Esporte (opcional)</option>
+            {% for esp in todos_esportes %}
+            <option value="{{ esp }}">{{ esp }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="local" placeholder="Local (opcional)" maxlength="120">
+        <input type="text" name="data_sugerida" placeholder="Quando? Ex: sábado 9h" maxlength="40">
+        <button class="btn btn-sm">Enviar</button>
+    </div>
+</form>
+
+<div class="chip-row">
+    <a href="/chat"><span class="chip {{ 'ativo' if not esporte_filtro }}">Todos</span></a>
+    {% for esp in todos_esportes %}
+    <a href="/chat?esporte={{ esp }}"><span class="chip {{ 'ativo' if esporte_filtro == esp }}">{{ esp }}</span></a>
+    {% endfor %}
+</div>
+
+{% if mensagens %}
+<div class="card">
+    {% for m in mensagens %}
+    <div class="msg">
+        <div class="msg-avatar">{{ m.autor.iniciais() }}</div>
+        <div class="msg-body">
+            <div class="msg-head">
+                <span class="msg-nome">{{ m.autor.nome }}</span>
+                <span class="msg-tempo">{{ m.criado_em.strftime('%d/%m %H:%M') }}</span>
+            </div>
+            <p class="msg-texto">{{ m.texto }}</p>
+            {% if m.esporte or m.local or m.data_sugerida %}
+            <div class="msg-tags">
+                {% if m.esporte %}<span class="msg-tag">🏅 {{ m.esporte }}</span>{% endif %}
+                {% if m.local %}<span class="msg-tag">📍 {{ m.local }}</span>{% endif %}
+                {% if m.data_sugerida %}<span class="msg-tag">🕒 {{ m.data_sugerida }}</span>{% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% if current_user.id == m.autor_id %}
+        <form method="POST" action="/chat/{{ m.id }}/excluir">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn-danger-ghost" title="Excluir">✕</button>
+        </form>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty">
+    <span class="empty-icon">💬</span>
+    <p>Nenhuma mensagem ainda{% if esporte_filtro %} em {{ esporte_filtro }}{% endif %}. Seja o primeiro a marcar algo!</p>
+</div>
+{% endif %}
+
+{% endblock %}

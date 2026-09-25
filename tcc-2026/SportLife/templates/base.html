@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SportLife</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%E2%9A%BD</text></svg>">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="/" class="logo">Sport<span>Life</span></a>
+    <div class="nav-links">
+        <a href="/chat" class="nav-link {{ 'ativo' if request.path == '/chat' }}">Chat</a>
+        <a href="/torneios" class="nav-link {{ 'ativo' if request.path.startswith('/torneios') }}">Torneios</a>
+        <a href="/reels" class="nav-link {{ 'ativo' if request.path.startswith('/reels') }}">Reels</a>
+        {% if current_user.is_authenticated %}
+        <a href="/perfil" class="nav-link {{ 'ativo' if request.path == '/perfil' }}">Perfil</a>
+        <a href="/logout" class="nav-link">Sair</a>
+        <a href="/perfil" class="nav-avatar">{{ current_user.iniciais() }}</a>
+        {% else %}
+        <a href="/login" class="nav-link">Entrar</a>
+        <a href="/cadastro" class="btn btn-sm">Criar conta</a>
+        {% endif %}
+    </div>
+</nav>
+
+<main>
+{% with messages = get_flashed_messages() %}
+    {% for msg in messages %}<div class="flash-ok">{{ msg }}</div>{% endfor %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">© 2026 SportLife · gerenciador de prática esportiva</footer>
+
+{% if current_user.is_authenticated %}
+<nav class="tabbar">
+    <a href="/chat" class="tab-item {{ 'ativo' if request.path == '/chat' }}"><span class="tab-icon">💬</span>Chat</a>
+    <a href="/torneios" class="tab-item {{ 'ativo' if request.path.startswith('/torneios') }}"><span class="tab-icon">🏆</span>Torneios</a>
+    <a href="/reels" class="tab-item {{ 'ativo' if request.path.startswith('/reels') }}"><span class="tab-icon">🎬</span>Reels</a>
+    <a href="/perfil" class="tab-item {{ 'ativo' if request.path == '/perfil' }}"><span class="tab-icon">👤</span>Perfil</a>
+</nav>
+{% endif %}
+
+</body>
+</html>

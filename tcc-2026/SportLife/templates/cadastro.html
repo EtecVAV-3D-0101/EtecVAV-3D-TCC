@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="auth-wrap">
+    <h1>Criar conta</h1>
+    <p class="sub">Leva menos de um minuto.</p>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="field">
+            <label class="form-lbl">Nome</label>
+            <input type="text" name="nome" class="form-control" placeholder="Seu nome" required autofocus>
+        </div>
+        <div class="field">
+            <label class="form-lbl">Email</label>
+            <input type="email" name="email" class="form-control" placeholder="voce@email.com" required>
+        </div>
+        <div class="field">
+            <label class="form-lbl">Senha</label>
+            <input type="password" name="senha" class="form-control" placeholder="mínimo 6 caracteres" minlength="6" required>
+        </div>
+        <div class="field">
+            <label class="form-lbl">Confirmar senha</label>
+            <input type="password" name="confirmar_senha" class="form-control" placeholder="repita a senha" minlength="6" required>
+        </div>
+        <button class="btn btn-block">Criar conta grátis</button>
+    </form>
+
+    <p class="auth-switch">Já tem conta? <a href="/login">Entrar</a></p>
+</div>
+
+{% endblock %}

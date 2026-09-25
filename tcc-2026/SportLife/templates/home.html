@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="hero">
+    <h1>Combine sua próxima <span>partida</span>.</h1>
+    <p>Marque amistosos e práticas pelo chat, acompanhe torneios e veja os resultados dos jogos que já rolaram.</p>
+    <div class="hero-actions">
+        <a href="/cadastro" class="btn">Criar conta grátis</a>
+        <a href="/login" class="btn btn-outline">Entrar</a>
+    </div>
+</div>
+
+<div class="feature-grid">
+    <div class="feature-card">
+        <span class="icon">💬</span>
+        <h3>Chat</h3>
+        <p>Marque uma prática ou um amistoso e combine local e horário direto com a galera.</p>
+    </div>
+    <div class="feature-card">
+        <span class="icon">👤</span>
+        <h3>Perfil</h3>
+        <p>Diga quais esportes você pratica e sua idade, pra encontrar gente com o mesmo perfil.</p>
+    </div>
+    <div class="feature-card">
+        <span class="icon">🏆</span>
+        <h3>Torneios</h3>
+        <p>Veja os torneios que vão acontecer e fique por dentro de data e local.</p>
+    </div>
+    <div class="feature-card">
+        <span class="icon">🎬</span>
+        <h3>Reels</h3>
+        <p>Confira os resultados dos jogos e torneios que já aconteceram.</p>
+    </div>
+</div>
+
+{% endblock %}

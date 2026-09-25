@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="perfil-top">
+    <div class="perfil-avatar">{{ current_user.iniciais() }}</div>
+    <div>
+        <div class="perfil-nome">{{ current_user.nome }}</div>
+        <div class="perfil-email">{{ current_user.email }}</div>
+    </div>
+</div>
+
+<div class="perfil-stats">
+    <div class="perfil-stat"><strong>{{ minhas_mensagens }}</strong><span>Mensagens</span></div>
+    <div class="perfil-stat"><strong>{{ meus_resultados }}</strong><span>Resultados</span></div>
+</div>
+
+<form method="POST" class="card">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="field">
+        <label class="form-lbl">Idade</label>
+        <input type="number" name="idade" class="form-control" min="10" max="100"
+               value="{{ current_user.idade or '' }}" placeholder="Ex: 17" style="max-width:120px;">
+    </div>
+
+    <div class="field">
+        <label class="form-lbl">Sobre você</label>
+        <textarea name="bio" class="form-control" rows="3" maxlength="200"
+                  placeholder="Conte um pouco sobre você e como você joga...">{{ current_user.bio or '' }}</textarea>
+    </div>
+
+    <div class="field">
+        <label class="form-lbl">Esportes que você pratica</label>
+        <div class="esporte-check-grid">
+            {% set meus_esportes = current_user.lista_esportes() %}
+            {% for esp in todos_esportes %}
+            <label class="esporte-check">
+                <input type="checkbox" name="esportes" value="{{ esp }}" {{ 'checked' if esp in meus_esportes }}>
+                {{ esp }}
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button class="btn btn-block">Salvar perfil</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Novo torneio</h1>
+        <p>Avise a galera sobre o que vai rolar.</p>
+    </div>
+</div>
+
+<form method="POST" class="card">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="field">
+        <label class="form-lbl">Nome do torneio</label>
+        <input type="text" name="nome" class="form-control" placeholder="Ex: Copa de Vôlei da Etec" required maxlength="120" autofocus>
+    </div>
+
+    <div class="field">
+        <label class="form-lbl">Esporte</label>
+        <select name="esporte" class="form-control" required>
+            <option value="">Selecione</option>
+            {% for esp in todos_esportes %}
+            <option value="{{ esp }}">{{ esp }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="field">
+        <label class="form-lbl">Data</label>
+        <input type="text" name="data" class="form-control" placeholder="Ex: 12/10/2026" maxlength="40">
+    </div>
+
+    <div class="field">
+        <label class="form-lbl">Local</label>
+        <input type="text" name="local" class="form-control" placeholder="Ex: Quadra da Etec" maxlength="120">
+    </div>
+
+    <div class="field">
+        <label class="form-lbl">Descrição</label>
+        <textarea name="descricao" class="form-control" rows="3" maxlength="400" placeholder="Regras, categoria, o que for importante..."></textarea>
+    </div>
+
+    <button class="btn btn-block">Publicar torneio</button>
+</form>
+
+{% endblock %}

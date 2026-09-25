@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Publicar resultado</h1>
+        <p>Conte como foi o jogo ou o torneio.</p>
+    </div>
+</div>
+
+<form method="POST" class="card">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="field">
+        <label class="form-lbl">Esporte</label>
+        <select name="esporte" class="form-control" required>
+            <option value="">Selecione</option>
+            {% for esp in todos_esportes %}
+            <option value="{{ esp }}">{{ esp }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="field">
+        <label class="form-lbl">Quem jogou</label>
+        <input type="text" name="participantes" class="form-control" placeholder="Ex: Turma A vs Turma B" required maxlength="150" autofocus>
+    </div>
+
+    <div class="field">
+        <label class="form-lbl">Placar</label>
+        <input type="text" name="placar" class="form-control" placeholder="Ex: 3 x 1" maxlength="60">
+    </div>
+
+    <div class="field">
+        <label class="form-lbl">Data</label>
+        <input type="text" name="data" class="form-control" placeholder="Ex: 20/09/2026" maxlength="40">
+    </div>
+
+    {% if torneios %}
+    <div class="field">
+        <label class="form-lbl">Torneio (opcional)</label>
+        <select name="torneio_id" class="form-control">
+            <option value="">Nenhum — foi só um amistoso</option>
+            {% for t in torneios %}
+            <option value="{{ t.id }}">{{ t.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% endif %}
+
+    <div class="field">
+        <label class="form-lbl">Observação</label>
+        <textarea name="observacao" class="form-control" rows="3" maxlength="300" placeholder="Algum destaque do jogo? (opcional)"></textarea>
+    </div>
+
+    <button class="btn btn-block">Publicar</button>
+</form>
+
+{% endblock %}
