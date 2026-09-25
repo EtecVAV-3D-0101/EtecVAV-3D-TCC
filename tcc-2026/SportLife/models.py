@@ -8,7 +8,7 @@ db = SQLAlchemy()
 # Lista fixa de esportes usada em todo o site (chat, perfil, torneios, reels)
 ESPORTES = [
     'Futebol', 'Futsal', 'Vôlei', 'ping-pong',
-    'Basquete', 'Luta', 'Corrida', 'Queimada',
+    'Basquete', 'Luta', 'Corrida', 'Outros',
 ]
 
 
