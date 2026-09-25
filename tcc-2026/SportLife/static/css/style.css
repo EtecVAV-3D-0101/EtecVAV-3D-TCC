@@ -1,14 +1,19 @@
 :root {
-    --bg: #ffffff;
-    --bg-soft: #f7f8fa;
-    --borda: #e6e8eb;
-    --texto: #16181d;
-    --muted: #75797f;
-    --accent: #2f6fed;
-    --accent-soft: #eaf0fe;
+    --bg: #f4f7f5;
+    --bg-soft: #eaf2ed;
+    --borda: #dbe4df;
+    --texto: #101b16;
+    --muted: #66736d;
+    --accent: #087f5b;
+    --accent-dark: #075c43;
+    --accent-light: #19a974;
+    --accent-soft: #e2f4ec;
+    --sport-blue: #1769aa;
+    --sport-orange: #f28c28;
+    --sport-yellow: #f4c542;
     --danger: #e5484d;
     --danger-soft: #fdeced;
-    --radius: 12px;
+    --radius: 14px;
 }
 
 * { box-sizing: border-box; }
@@ -397,3 +402,542 @@ footer.site-footer {
 @media (max-width: 420px) {
     .esporte-check-grid { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   SPORTLIFE — CAMADA VISUAL ESPORTIVA
+   Mantém as classes originais e apenas reforça o tema.
+   ========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        linear-gradient(rgba(8,127,91,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8,127,91,.035) 1px, transparent 1px),
+        var(--bg);
+    background-size: 34px 34px;
+}
+
+/* ===== NAVBAR ESPORTIVA ===== */
+.navbar {
+    background: rgba(255,255,255,.94);
+    border-bottom: 1px solid rgba(8,127,91,.16);
+    box-shadow: 0 4px 18px rgba(16,27,22,.055);
+}
+
+.logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.logo::before {
+    content: "⚽";
+    font-size: 1.05rem;
+    filter: saturate(1.15);
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav-link {
+    transition: .2s ease;
+}
+
+.nav-link:hover {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+.nav-link.ativo {
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    box-shadow: 0 5px 12px rgba(8,127,91,.18);
+}
+
+.nav-avatar {
+    background: linear-gradient(135deg, var(--accent), var(--sport-blue));
+    box-shadow: 0 4px 10px rgba(8,127,91,.22);
+}
+
+/* ===== LAYOUT ===== */
+main {
+    position: relative;
+}
+
+main::before {
+    content: "";
+    position: fixed;
+    width: 180px;
+    height: 180px;
+    border: 2px solid rgba(8,127,91,.055);
+    border-radius: 50%;
+    right: -85px;
+    top: 180px;
+    pointer-events: none;
+}
+
+/* ===== MENSAGENS ===== */
+.flash-ok {
+    background: linear-gradient(135deg, var(--accent-soft), #f1fbf7);
+    color: var(--accent-dark);
+    border-color: rgba(8,127,91,.18);
+}
+
+/* ===== CABEÇALHOS ===== */
+.page-header h1 {
+    position: relative;
+}
+
+.page-header h1::before {
+    content: "🏆";
+    margin-right: 7px;
+    font-size: .9em;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    box-shadow: 0 6px 14px rgba(8,127,91,.17);
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+.btn:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+    box-shadow: 0 9px 18px rgba(8,127,91,.23);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-outline {
+    background: rgba(255,255,255,.9);
+    color: var(--accent-dark);
+    border-color: rgba(8,127,91,.22);
+}
+
+.btn-outline:hover {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+}
+
+/* ===== CARDS ===== */
+.card {
+    position: relative;
+    overflow: hidden;
+    border-color: rgba(8,127,91,.13);
+    box-shadow: 0 5px 18px rgba(16,27,22,.045);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    width: 74px;
+    height: 74px;
+    border: 2px solid rgba(8,127,91,.045);
+    border-radius: 50%;
+    right: -34px;
+    bottom: -38px;
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(8,127,91,.22);
+    box-shadow: 0 9px 24px rgba(16,27,22,.075);
+}
+
+/* ===== FILTRO DE ESPORTES ===== */
+.chip {
+    border-color: rgba(8,127,91,.17);
+    background: rgba(255,255,255,.9);
+    transition: .18s ease;
+}
+
+.chip:hover {
+    border-color: var(--accent);
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    transform: translateY(-1px);
+}
+
+.chip.ativo {
+    background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+    border-color: var(--accent);
+    box-shadow: 0 4px 10px rgba(8,127,91,.17);
+}
+
+/* ===== CHAT / FEED ===== */
+.chat-form {
+    background: rgba(255,255,255,.88);
+    border-color: rgba(8,127,91,.15);
+    box-shadow: 0 5px 18px rgba(16,27,22,.035);
+}
+
+.chat-form textarea::placeholder {
+    color: #8b9690;
+}
+
+.chat-form-row select,
+.chat-form-row input[type=text] {
+    border-color: rgba(8,127,91,.17);
+}
+
+.chat-form-row select:focus,
+.chat-form-row input[type=text]:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(8,127,91,.09);
+}
+
+.msg {
+    border-bottom-color: rgba(8,127,91,.10);
+}
+
+.msg-avatar {
+    background: linear-gradient(135deg, var(--accent-soft), #d9eee6);
+    color: var(--accent-dark);
+}
+
+.msg-tag {
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    border: 1px solid rgba(8,127,91,.08);
+}
+
+/* ===== TORNEIOS ===== */
+.torneio-card {
+    position: relative;
+}
+
+.torneio-icon {
+    background: linear-gradient(135deg, #e2f4ec, #d8edf8);
+    border: 1px solid rgba(8,127,91,.12);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.7);
+}
+
+.torneio-icon::after {
+    content: "🏆";
+    position: absolute;
+}
+
+.torneio-icon {
+    font-size: 0;
+}
+
+.torneio-icon::after {
+    font-size: 1.3rem;
+}
+
+/* ===== RESULTADOS / PLACAR ===== */
+.resultado-card {
+    background:
+        linear-gradient(135deg, rgba(8,127,91,.035), transparent 45%),
+        #fff;
+}
+
+.resultado-esporte {
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--sport-blue));
+    letter-spacing: .02em;
+}
+
+.resultado-placar {
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-dark);
+    position: relative;
+}
+
+.resultado-placar::before {
+    content: "PLACAR";
+    display: block;
+    font-size: .56rem;
+    letter-spacing: .13em;
+    color: var(--muted);
+    margin-bottom: 1px;
+}
+
+.resultado-footer {
+    border-top-color: rgba(8,127,91,.10);
+}
+
+/* ===== PERFIL DE ATLETA ===== */
+.perfil-top {
+    position: relative;
+    padding: 18px;
+    border-radius: var(--radius);
+    background:
+        linear-gradient(115deg, rgba(8,127,91,.10), rgba(23,105,170,.055)),
+        #fff;
+    border: 1px solid rgba(8,127,91,.13);
+}
+
+.perfil-avatar {
+    background: linear-gradient(135deg, var(--accent-dark), var(--sport-blue));
+    box-shadow: 0 6px 15px rgba(8,127,91,.22);
+}
+
+.perfil-nome::after {
+    content: " 🏅";
+    font-size: .75em;
+}
+
+.perfil-stats {
+    padding: 13px 16px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.78);
+    border: 1px solid rgba(8,127,91,.10);
+}
+
+.perfil-stat strong {
+    color: var(--accent-dark);
+}
+
+/* ===== FORMULÁRIOS ===== */
+.form-control {
+    border-color: rgba(8,127,91,.16);
+    transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+.form-control:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(8,127,91,.09);
+}
+
+.esporte-check {
+    background: rgba(255,255,255,.8);
+    border-color: rgba(8,127,91,.15);
+    transition: .18s ease;
+}
+
+.esporte-check:hover {
+    background: var(--accent-soft);
+    border-color: rgba(8,127,91,.3);
+    transform: translateY(-1px);
+}
+
+.esporte-check input {
+    accent-color: var(--accent);
+}
+
+/* ===== ESTADO VAZIO ===== */
+.empty {
+    background:
+        radial-gradient(circle at center, rgba(8,127,91,.055), transparent 55%);
+    border-radius: var(--radius);
+}
+
+.empty-icon {
+    filter: drop-shadow(0 4px 6px rgba(8,127,91,.1));
+}
+
+/* ===== AUTENTICAÇÃO ===== */
+.auth-wrap {
+    position: relative;
+}
+
+.auth-wrap::before {
+    content: "🏃";
+    display: block;
+    text-align: center;
+    font-size: 2.7rem;
+    margin-bottom: 8px;
+}
+
+.auth-wrap h1 {
+    text-align: center;
+}
+
+.auth-wrap p.sub {
+    text-align: center;
+}
+
+.auth-switch a {
+    color: var(--accent);
+}
+
+/* ===== HOME / LANDING PAGE ===== */
+.hero {
+    position: relative;
+    max-width: 650px;
+    margin: 54px auto;
+    padding: 46px 28px;
+    border-radius: 24px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 90% 20%, rgba(242,140,40,.18), transparent 22%),
+        radial-gradient(circle at 8% 90%, rgba(23,105,170,.13), transparent 25%),
+        linear-gradient(135deg, #ffffff, #eef8f3);
+    border: 1px solid rgba(8,127,91,.14);
+    box-shadow: 0 14px 38px rgba(16,27,22,.075);
+}
+
+.hero::before {
+    content: "⚽";
+    position: absolute;
+    right: -15px;
+    top: -24px;
+    font-size: 7rem;
+    opacity: .075;
+    transform: rotate(14deg);
+}
+
+.hero::after {
+    content: "🏀";
+    position: absolute;
+    left: -17px;
+    bottom: -28px;
+    font-size: 6rem;
+    opacity: .055;
+    transform: rotate(-12deg);
+}
+
+.hero h1 {
+    position: relative;
+    z-index: 1;
+    font-size: 2.25rem;
+}
+
+.hero h1 span {
+    color: var(--accent);
+    background: linear-gradient(135deg, var(--accent-dark), var(--accent-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-actions {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== CARDS DE RECURSOS ===== */
+.feature-grid {
+    margin-top: 28px;
+}
+
+.feature-card {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255,255,255,.9);
+    border-color: rgba(8,127,91,.13);
+    box-shadow: 0 5px 17px rgba(16,27,22,.04);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.feature-card::after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(8,127,91,.05);
+    border-radius: 50%;
+    right: -25px;
+    bottom: -25px;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(8,127,91,.24);
+    box-shadow: 0 12px 25px rgba(16,27,22,.08);
+}
+
+.feature-card .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    border: 1px solid rgba(8,127,91,.10);
+}
+
+/* ===== FOOTER ===== */
+footer.site-footer {
+    background: rgba(255,255,255,.7);
+    border-top-color: rgba(8,127,91,.12);
+}
+
+/* ===== TABBAR MOBILE ===== */
+.tabbar {
+    background: rgba(255,255,255,.96);
+    border-top-color: rgba(8,127,91,.14);
+    box-shadow: 0 -5px 18px rgba(16,27,22,.055);
+}
+
+.tab-item {
+    transition: .18s ease;
+}
+
+.tab-item.ativo {
+    color: var(--accent);
+}
+
+.tab-item .tab-icon {
+    filter: saturate(1.15);
+}
+
+/* ===== SELEÇÃO / SCROLLBAR ===== */
+::selection {
+    background: rgba(8,127,91,.18);
+    color: var(--accent-dark);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(8,127,91,.35) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: rgba(8,127,91,.35);
+    border-radius: 99px;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 720px) {
+    .hero {
+        margin: 30px 12px;
+        padding: 34px 20px;
+        border-radius: 20px;
+    }
+
+    .hero h1 {
+        font-size: 1.85rem;
+    }
+
+    .card:hover,
+    .feature-card:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+}
+
